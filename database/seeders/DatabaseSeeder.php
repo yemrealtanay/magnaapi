@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Mold;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -25,5 +26,17 @@ class DatabaseSeeder extends Seeder
         $user2->email = 'uretim@magna.com.tr';
         $user2->password = bcrypt('12345678');
         $user2->save();
+
+        $mold1 = new Mold();
+        $mold1->name = '363 Gor';
+        $mold1->user_id = $user1->id;
+        $mold1->shot_count = 0;
+        $mold1->save();
+
+        $mold2 = new Mold();
+        $mold2->name = '362 Lower Mic';
+        $mold2->user_id = $user1->id;
+        $mold2->shot_count = 0;
+        $mold2->save();
     }
 }
