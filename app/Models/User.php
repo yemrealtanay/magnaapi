@@ -13,6 +13,11 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function molds()
+    {
+        return $this->hasMany(Mold::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
