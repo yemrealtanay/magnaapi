@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MoldController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -25,3 +26,6 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
+
+Route::resource('molds', MoldController::class)
+     ->middleware('auth:api');

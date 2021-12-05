@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mold;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class MoldController extends Controller
@@ -10,11 +11,13 @@ class MoldController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index()
     {
-        //
+        $molds = Mold::all();
+
+        return response()->json($molds);
     }
 
     /**
@@ -31,11 +34,13 @@ class MoldController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $mold = Mold::create($request->all());
+
+        return response()->json($mold);
     }
 
     /**
@@ -76,10 +81,11 @@ class MoldController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Mold  $mold
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function destroy(Mold $mold)
     {
-        //
+        Mold::destroy($mold->id);
+        return response()->json(['success' => true]);
     }
 }
